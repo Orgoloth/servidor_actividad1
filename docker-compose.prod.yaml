@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  web:
+    environment:
+      spring_profiles_active: prod
+    ports:
+      - '8082:8082'

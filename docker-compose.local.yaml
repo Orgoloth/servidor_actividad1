@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  web:
+    environment:
+      spring_profiles_active: local
+    ports:
+      - '8080:8080'

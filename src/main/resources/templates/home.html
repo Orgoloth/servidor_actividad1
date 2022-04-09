@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
+<body>
+<header th:replace="fragments/layout::header"></header>
+
+<p class="test">hola</p>
+<h1 th:text="#{hello}"></h1>
+<h2 th:text="#{welcome}"></h2>
+<h3 th:text="${@environment.getProperty('mode')}"></h3>
+<h3 th:text="${@environment.getProperty('DUMMY')}"></h3>
+
+<footer th:replace="fragments/layout::footer"></footer>
+</body>
+</html>

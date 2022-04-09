@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
+<body>
+<header th:replace="fragments/layout::header"></header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card" th:object="${movie}">
+                <img alt="..." class="card-img-top" th:src="@{'https://image.tmdb.org/t/p/w300' + *{poster_path}}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="*{title}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="*{original_title}"></h6>
+                    <p class="card-text" th:text="*{overview}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h1>Nueva reseña</h1>
+            <form action="#" class="row g-3" method="post" th:action="@{/reviews/new(movieId=${param.movieId})}" th:object="${review}">
+                <div class="col-md-4">
+                    <label class="form-label" for="title">Titulo*</label>
+                    <input class="form-control" id="title" required th:field="*{title}" type="text">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="rating">Puntuación*</label>
+                    <input class="form-control" id="rating" required th:field="*{rating}" type="number">
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="text">Texto*</label>
+                    <textarea class="form-control" id="text" th:field="*{text}"></textarea>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Añadir reseña</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/layout::footer"></footer>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
+<body>
+<header th:replace="fragments/layout::header"></header>
+
+<div class="container">
+    <h1>Movies</h1>
+
+    <p>
+        <a th:href="@{${page} > 1 ? './' + ${page - 1} : './'}">Anterior</a>
+        <span th:text="${page} + ' de ' + ${total_pages}"></span>
+        <a th:href="@{${page} < ${total_pages} ? './' + ${page + 1} : './' +${page}}">Siguiente</a>
+    </p>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4" th:each="movie : ${movies}">
+            <div class="card" th:object="${movie}">
+                <img alt="..." class="card-img-top" th:src="@{'https://image.tmdb.org/t/p/w300' + *{poster_path}}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="*{title}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="*{original_title}"></h6>
+                    <p class="card-text" th:text="*{overview}"></p>
+                    <a class="card-link" th:href="@{/reviews/new(movieId=*{id})}">Crear reseña</a>
+                    <a class="card-link" th:href="@{/}">Crear notas personales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/layout::footer"></footer>
+</body>
+</html>
