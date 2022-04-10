@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
 <body>
 <header th:replace="fragments/layout::header"></header>
 
-<h1>Error genérico</h1>
+<h1>Error</h1>
+
+<p th:text="${type}"></p>
+<p th:text="${message}"></p>
 
 <footer th:replace="fragments/layout::footer"></footer>
 </body>

@@ -1,6 +1,6 @@
 package edu.sanvalero.manuel.servidor_actividad1;
 
-import edu.sanvalero.manuel.servidor_actividad1.contexts.movies.domain.MovieApiResponseError;
+import edu.sanvalero.manuel.servidor_actividad1.contexts.movies.MovieApiResponseError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

@@ -1,8 +1,8 @@
 package edu.sanvalero.manuel.servidor_actividad1.app.security;
 
-import edu.sanvalero.manuel.servidor_actividad1.contexts.users.application.UserService;
-import edu.sanvalero.manuel.servidor_actividad1.contexts.roles.domain.Role;
-import edu.sanvalero.manuel.servidor_actividad1.contexts.users.domain.User;
+import edu.sanvalero.manuel.servidor_actividad1.contexts.users.UserService;
+import edu.sanvalero.manuel.servidor_actividad1.contexts.roles.Role;
+import edu.sanvalero.manuel.servidor_actividad1.contexts.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

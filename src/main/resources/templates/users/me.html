@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
 <body>
 <header th:replace="fragments/layout::header"></header>
@@ -7,49 +7,50 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
+            <form class="p-3 py-5" th:action="@{/users/edit(id=*{id})}" th:object="${user}" method="post">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Perfil de usuario</h4>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label class="labels">Nombre</label>
-                        <input type="text" class="form-control" th:value="${user.name}">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="labels">Apellidos</label>
-                        <input type="text" class="form-control" th:value="${user.surname}">
-                    </div>
+                <div class="col-md-6">
+                    <label class="labels">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{name}">
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label class="labels">Email</label>
-                        <input type="text" class="form-control" th:value="${user.email}">
-                    </div>
-                    <div class="col-md-12">
-                        <label class="labels">Dirección</label>
-                        <input type="text" class="form-control" th:value="${user.address}">
-                    </div>
-                    <div class="col-md-12">
-                        <label class="labels">Código postal</label>
-                        <input type="text" class="form-control" th:value="${user.postalCode}">
-                    </div>
-                    <div class="col-md-12">
-                        <label class="labels">Localidad</label>
-                        <input type="text" class="form-control" th:value="${user.city}">
-                    </div>
-                    <div class="col-md-12">
-                        <label class="labels">Provincia</label>
-                        <input type="text" class="form-control" th:value="${user.province}">
-                    </div>
+                <div class="col-md-6">
+                    <label class="labels">Apellidos</label>
+                    <input type="text" class="form-control" th:field="*{surname}">
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label class="labels">Country</label>
-                        <input type="text" class="form-control" th:value="${user.country}">
-                    </div>
+                <div class="col-md-12">
+                    <label class="labels">Email</label>
+                    <input type="text" class="form-control" th:field="*{email}">
                 </div>
-            </div>
+                <div class="col-md-12">
+                    <label class="labels">New Password</label>
+                    <input type="text" class="form-control" name="password">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Dirección</label>
+                    <input type="text" class="form-control" th:field="*{address}">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Código postal</label>
+                    <input type="text" class="form-control" th:field="*{postalCode}">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Localidad</label>
+                    <input type="text" class="form-control" th:field="*{city}">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Provincia</label>
+                    <input type="text" class="form-control" th:field="*{province}">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Country</label>
+                    <input type="text" class="form-control" th:field="*{country}">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Editar datos</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

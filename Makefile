@@ -9,4 +9,4 @@ prod:
 down:
 	docker-compose down
 db:
-	docker-compose up -d db
+	docker-compose up -d db adminer

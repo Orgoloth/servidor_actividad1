@@ -1,7 +1,7 @@
-package edu.sanvalero.manuel.servidor_actividad1.contexts.users.domain;
+package edu.sanvalero.manuel.servidor_actividad1.contexts.users;
 
-import edu.sanvalero.manuel.servidor_actividad1.contexts.reviews.domain.Review;
-import edu.sanvalero.manuel.servidor_actividad1.contexts.roles.domain.Role;
+import edu.sanvalero.manuel.servidor_actividad1.contexts.reviews.Review;
+import edu.sanvalero.manuel.servidor_actividad1.contexts.roles.Role;
 import lombok.Data;
 
 import javax.persistence.*;

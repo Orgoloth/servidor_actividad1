@@ -1,4 +1,4 @@
-package edu.sanvalero.manuel.servidor_actividad1.contexts.roles.domain;
+package edu.sanvalero.manuel.servidor_actividad1.contexts.roles;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

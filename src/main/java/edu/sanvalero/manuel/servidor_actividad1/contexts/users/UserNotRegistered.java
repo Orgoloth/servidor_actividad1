@@ -1,4 +1,4 @@
-package edu.sanvalero.manuel.servidor_actividad1.contexts.users.domain;
+package edu.sanvalero.manuel.servidor_actividad1.contexts.users;
 
 /**
  * Excepción para controlar un fallo a la hora de registrar un usuario

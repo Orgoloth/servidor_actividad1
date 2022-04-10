@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
 <body>
 <header th:replace="fragments/layout::header"></header>
@@ -7,11 +7,16 @@
 <div class="container">
     <h1>Movies</h1>
 
-    <p>
-        <a th:href="@{${page} > 1 ? './' + ${page - 1} : './'}">Anterior</a>
+    <form th:action="@{'/movies/search'}">
+        <input type="text" th:name="query" th:value="${query}" placeholder="Busque películas">
+        <input type="submit"/>
+    </form>
+
+    <div>
+        <a th:href="@{/movies/search/(query=${query}, page=${page - 1})}">Anterior</a>
         <span th:text="${page} + ' de ' + ${total_pages}"></span>
-        <a th:href="@{${page} < ${total_pages} ? './' + ${page + 1} : './' +${page}}">Siguiente</a>
-    </p>
+        <a th:href="@{/movies/search/(query=${query}, page=${page + 1})}">Siguiente</a>
+    </div>
 
     <div class="row">
         <div class="col-md-6 col-lg-4" th:each="movie : ${movies}">
