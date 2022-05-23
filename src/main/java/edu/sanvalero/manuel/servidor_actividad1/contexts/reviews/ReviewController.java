@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import static edu.sanvalero.manuel.servidor_actividad1.app.TheMovieDb.API_KEY;
 import static edu.sanvalero.manuel.servidor_actividad1.app.TheMovieDb.BASE_URL;
@@ -27,10 +28,10 @@ import static edu.sanvalero.manuel.servidor_actividad1.app.TheMovieDb.BASE_URL;
 @Controller
 public class ReviewController {
     private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
-    private static final String NEW_PAGE = "/reviews/new";
-    private static final String LIST_PAGE = "/reviews/list";
-    private static final String SHOW_PAGE = "/reviews/show";
-    private static final String DELETE_PAGE = "/reviews/delete";
+    private static final String NEW_PAGE = "reviews/new";
+    private static final String LIST_PAGE = "reviews/list";
+    private static final String SHOW_PAGE = "reviews/show";
+    private static final String DELETE_PAGE = "reviews/delete";
 
     @Autowired
     private ReviewService reviewService;
@@ -39,10 +40,10 @@ public class ReviewController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping(NEW_PAGE)
+    @GetMapping("/reviews/new")
     public String newReview(@RequestParam String movieId, Model model, RestTemplate restTemplate) {
         if (movieId == null) return "redirect:/";
-        Movie movie = movieService.findById(Long.parseLong(movieId)).orElse(fetchMovieById(movieId, restTemplate)); // El fetch se ocupara de salvarla localmente para futuras llamadas
+        Movie movie = movieService.findById(Long.parseLong(movieId)).orElse(fetchMovieById(movieId, restTemplate));
 
         model.addAttribute("movie", movie);
         model.addAttribute("review", new Review());
@@ -50,13 +51,13 @@ public class ReviewController {
     }
 
 
-    @GetMapping(LIST_PAGE)
+    @GetMapping("/reviews/list")
     public String list(Model model) {
         model.addAttribute("reviews", reviewService.findAll());
         return LIST_PAGE;
     }
 
-    @GetMapping(SHOW_PAGE)
+    @GetMapping("/reviews/show")
     public String show(@RequestParam String id, Model model) {
         Review review = reviewService.findById(Long.parseLong(id)).orElseThrow();
         Movie movie = review.getMovie();
@@ -66,14 +67,14 @@ public class ReviewController {
         return SHOW_PAGE;
     }
 
-    @GetMapping(DELETE_PAGE)
+    @GetMapping("/reviews/delete")
     public String delete(@RequestParam String id) {
         Review review = reviewService.findById(Long.parseLong(id)).orElseThrow();
         reviewService.delete(review);
-        return "redirect:" + LIST_PAGE;
+        return "redirect:/reviews/list";
     }
 
-    @PostMapping(NEW_PAGE)
+    @PostMapping("/reviews/new")
     public String createReview(@RequestParam String movieId, @ModelAttribute Review review, HttpServletRequest request, RestTemplate restTemplate) {
         String remoteUsername = request.getRemoteUser();
         User remoteUser = userService.findByUsername(remoteUsername);
@@ -82,14 +83,14 @@ public class ReviewController {
         review.setAuthor(remoteUser);
         review.setDate(LocalDate.now());
         reviewService.save(review);
-        return "redirect:" + LIST_PAGE;
+        return "redirect:/reviews/list";
     }
 
     private Movie fetchMovieById(String movieId, RestTemplate restTemplate) {
         String requestUrl = String.format("%s%s%s?api_key=%s&language=%s", BASE_URL, "/movie/", movieId, API_KEY, LocaleContextHolder.getLocale());
         try {
             Movie movie = restTemplate.getForObject(requestUrl, Movie.class);
-            logger.info(String.format("Recuperada la película %s de moviedb", movie.getTitle()));
+            logger.info(String.format("Recuperada la película %s de moviedb", Objects.requireNonNull(movie).getTitle()));
             return movieService.save(movie);
         } catch (RestClientException e) {
             logger.info(e.getLocalizedMessage());

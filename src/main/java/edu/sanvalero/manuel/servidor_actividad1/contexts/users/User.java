@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -49,5 +50,5 @@ public class User {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "author")
-    Set<Review> reviews = new java.util.LinkedHashSet<>();
+    Set<Review> reviews = new LinkedHashSet<>();
 }
