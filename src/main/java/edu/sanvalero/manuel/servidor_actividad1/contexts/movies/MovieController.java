@@ -25,8 +25,9 @@ public class MovieController {
 
     @GetMapping(value = {"/movies/search"})
     public String movie(@RequestParam Optional<Integer> page, @RequestParam Optional<String> query, Model model, RestTemplate restTemplate) throws MovieApiResponseError {
+        Integer effectivePage = Math.max(1, page.orElse(DEFAULT_PAGE));
         String effectiveQuery = query.orElse(DEFAULT_QUERY);
-        String requestUrl = String.format("%s%s?api_key=%s&language=%s&page=%d&query=%s", BASE_URL, SEARCH_MOVIE, API_KEY, LocaleContextHolder.getLocale(), page.orElse(DEFAULT_PAGE), effectiveQuery);
+        String requestUrl = String.format("%s%s?api_key=%s&language=%s&page=%d&query=%s", BASE_URL, SEARCH_MOVIE, API_KEY, LocaleContextHolder.getLocale(), effectivePage, effectiveQuery);
         try {
             MovieApiPaginatedResponse movieApiResponse = restTemplate.getForObject(requestUrl, MovieApiPaginatedResponse.class);
             model.addAttribute("query", effectiveQuery);
