@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout::head(title='Actividad de aprendizaje 1')"></head>
+<body>
+<header th:replace="fragments/layout::header"></header>
+
+<ul>
+    <li th:each="note : ${notes}">
+        <a th:href="@{/notes/show(id=${note.id})}" th:text="${note.title}"></a>
+    </li>
+</ul>
+
+<footer th:replace="fragments/layout::footer"></footer>
+</body>
+</html>
