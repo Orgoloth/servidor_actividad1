@@ -7,11 +7,11 @@
 <div class="container">
     <form class="row g-3" action="#" th:action="@{/users/register}" th:object="${user}" method="post">
         <div class="col-md-4">
-            <label for="username" class="form-label">Usuario*</label>
+            <label for="username" class="form-label"><span th:text="#{user}"></span> *</label>
             <input type="text" class="form-control" id="username" th:field="*{username}" required>
         </div>
         <div class="col-md-4">
-            <label for="password" class="form-label">Contraseña*</label>
+            <label for="password" class="form-label"><span th:text="#{password}"></span>*</label>
             <input type="password" class="form-control" id="password" th:field="*{password}" required>
         </div>
         <div class="col-md-4">
