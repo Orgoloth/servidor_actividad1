@@ -6,3 +6,12 @@ services:
       spring_profiles_active: local
     ports:
       - '8080:8080'
+  db:
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - data-local:/var/lib/mysql
+
+volumes:
+  data-local:

@@ -6,3 +6,12 @@ services:
       spring_profiles_active: prod
     ports:
       - '8082:8082'
+  db:
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - data-prod:/var/lib/mysql
+
+volumes:
+  data-prod:
