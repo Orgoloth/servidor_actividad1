@@ -7,7 +7,7 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-5 border-right">
-            <form class="p-3 py-5" th:action="@{/users/edit(id=*{id})}" th:object="${user}" method="post">
+            <form class="p-3 py-5" th:action="@{/users/edit(id=*{id})}" th:object="${user}" method="post" id="editForm">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Perfil de usuario</h4>
                 </div>
@@ -24,8 +24,12 @@
                     <input type="text" class="form-control" th:field="*{email}">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">New Password</label>
+                    <label class="labels">Nueva contraseña</label>
                     <input type="text" class="form-control" name="password">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Confirma la nueva contraseña</label>
+                    <input type="text" class="form-control" name="password-confirm">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Dirección</label>
@@ -56,5 +60,22 @@
 </div>
 
 <footer th:replace="fragments/layout::footer"></footer>
+<script>
+      const form = document.querySelector('#editForm');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const password = formData.get('password');
+        const passwordConfirm = formData.get('password-confirm');
+
+        if (password !== passwordConfirm) {
+          alert('Las contraseñas no coinciden');
+          return;
+        }
+
+        form.submit();
+      });
+    </script>
 </body>
 </html>
