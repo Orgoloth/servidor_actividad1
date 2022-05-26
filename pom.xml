@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>edu.sanvalero.manuel</groupId>
-    <artifactId>servidor_actividad1</artifactId>
+    <artifactId>servidor-actividad1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>servidor_actividad1</name>
+    <name>servidor-actividad1</name>
     <description>Actividad de aprendizaje Desarrollo en entorno Servidor</description>
 
     <properties>
@@ -29,12 +29,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -83,7 +81,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${project.parent.version}</version>
                 <configuration>
-<!--                    <mainClass>${spring.boot.mainclass}</mainClass>-->
+                    <!--                    <mainClass>${spring.boot.mainclass}</mainClass>-->
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -94,6 +92,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
